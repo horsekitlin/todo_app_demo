@@ -145,7 +145,7 @@ const LatestOrders = ({ className, ...rest }) => {
                     {order.customer.name}
                   </TableCell>
                   <TableCell>
-                    {format(new Date(order.createdAt), 'DD/MM/YYYY')}
+                    {format(new Date(order.createdAt), 'dd/mm/yyyy')}
                   </TableCell>
                   <TableCell>
                     <Chip

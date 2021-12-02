@@ -91,7 +91,7 @@ const LatestProducts = ({ className, ...rest }) => {
             </ListItemAvatar>
             <ListItemText
               primary={product.name}
-              secondary={`Updated ${product.updatedAt.fromNow()}`}
+              secondary={`Updated ${product.updatedAt}`}
             />
             <IconButton
               edge='end'

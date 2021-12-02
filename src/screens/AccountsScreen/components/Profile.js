@@ -67,7 +67,7 @@ const Profile = ({ className, ...rest }) => {
             color='textSecondary'
             variant='body1'
           >
-            {`${format(new Date(), 'HH:mm A')} ${user.timezone}`}
+            {`${format(new Date(), 'HH:mm')} ${user.timezone}`}
           </Typography>
         </Box>
       </CardContent>

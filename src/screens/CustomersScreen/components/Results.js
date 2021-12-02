@@ -153,7 +153,7 @@ const Results = ({ className, customers, ...rest }) => {
                     {customer.phone}
                   </TableCell>
                   <TableCell>
-                    {format(new Date(customer.createdAt), 'DD/MM/YYYY')}
+                    {format(new Date(customer.createdAt), 'dd/mm/yyyy')}
                   </TableCell>
                 </TableRow>
               ))}
