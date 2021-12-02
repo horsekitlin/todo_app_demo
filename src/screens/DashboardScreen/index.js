@@ -37,7 +37,7 @@ const Dashboard = () => {
           container
           spacing={3}
         >
-          <Grid
+          {/* <Grid
             item
             lg={3}
             sm={6}
@@ -45,8 +45,8 @@ const Dashboard = () => {
             xs={12}
           >
             <Budget />
-          </Grid>
-          <Grid
+          </Grid> */}
+          {/* <Grid
             item
             lg={3}
             sm={6}
@@ -54,8 +54,8 @@ const Dashboard = () => {
             xs={12}
           >
             <TotalCustomers />
-          </Grid>
-          <Grid
+          </Grid> */}
+          {/* <Grid
             item
             lg={3}
             sm={6}
@@ -63,8 +63,8 @@ const Dashboard = () => {
             xs={12}
           >
             <TasksProgress />
-          </Grid>
-          <Grid
+          </Grid> */}
+          {/* <Grid
             item
             lg={3}
             sm={6}
@@ -72,7 +72,7 @@ const Dashboard = () => {
             xs={12}
           >
             <TotalProfit />
-          </Grid>
+          </Grid> */}
           <Grid
             item
             lg={8}
@@ -82,7 +82,7 @@ const Dashboard = () => {
           >
             <Sales />
           </Grid>
-          <Grid
+          {/* <Grid
             item
             lg={4}
             md={6}
@@ -90,7 +90,7 @@ const Dashboard = () => {
             xs={12}
           >
             <TrafficByDevice />
-          </Grid>
+          </Grid> */}
           <Grid
             item
             lg={4}
