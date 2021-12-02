@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
-import moment from 'moment';
+import subHours from 'date-fns/subHours';
 import {
   Box,
   Button,
@@ -24,31 +24,31 @@ const data = [
     id: uuid(),
     name: 'Dropbox',
     imageUrl: '/static/images/products/product_1.png',
-    updatedAt: moment().subtract(2, 'hours')
+    updatedAt: subHours(new Date(), 2)
   },
   {
     id: uuid(),
     name: 'Medium Corporation',
     imageUrl: '/static/images/products/product_2.png',
-    updatedAt: moment().subtract(2, 'hours')
+    updatedAt: subHours(new Date(), 2)
   },
   {
     id: uuid(),
     name: 'Slack',
     imageUrl: '/static/images/products/product_3.png',
-    updatedAt: moment().subtract(3, 'hours')
+    updatedAt: subHours(new Date(), 3)
   },
   {
     id: uuid(),
     name: 'Lyft',
     imageUrl: '/static/images/products/product_4.png',
-    updatedAt: moment().subtract(5, 'hours')
+    updatedAt: subHours(new Date(), 5)
   },
   {
     id: uuid(),
     name: 'GitHub',
     imageUrl: '/static/images/products/product_5.png',
-    updatedAt: moment().subtract(9, 'hours')
+    updatedAt: subHours(new Date(), 9)
   }
 ];
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import moment from 'moment';
+import format from 'date-fns/format';
 import {
   Avatar,
   Box,
@@ -67,7 +67,7 @@ const Profile = ({ className, ...rest }) => {
             color='textSecondary'
             variant='body1'
           >
-            {`${moment().format('HH:mm A')} ${user.timezone}`}
+            {`${format(new Date(), 'HH:mm A')} ${user.timezone}`}
           </Typography>
         </Box>
       </CardContent>

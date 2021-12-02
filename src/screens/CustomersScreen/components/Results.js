@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import format from 'date-fns/format';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Avatar,
@@ -153,7 +153,7 @@ const Results = ({ className, customers, ...rest }) => {
                     {customer.phone}
                   </TableCell>
                   <TableCell>
-                    {moment(customer.createdAt).format('DD/MM/YYYY')}
+                    {format(new Date(customer.createdAt), 'DD/MM/YYYY')}
                   </TableCell>
                 </TableRow>
               ))}

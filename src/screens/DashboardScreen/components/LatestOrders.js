@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import moment from 'moment';
+import format from 'date-fns/format';
 import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
@@ -145,7 +145,7 @@ const LatestOrders = ({ className, ...rest }) => {
                     {order.customer.name}
                   </TableCell>
                   <TableCell>
-                    {moment(order.createdAt).format('DD/MM/YYYY')}
+                    {format(new Date(order.createdAt), 'DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
                     <Chip
