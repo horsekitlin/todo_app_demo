@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.1.10",
     "chart.js": "^2.9.4",
     "date-fns": "^2.27.0",
+    "firebase": "^9.5.0",
     "flux-constants": "^0.2.2",
     "formik": "^2.2.9",
     "history": "^5.1.0",

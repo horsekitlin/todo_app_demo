@@ -1,5 +1,5 @@
 const authState = {
-  isAuth: true,
+  isAuth: false,
 };
 
 const settingState = {
