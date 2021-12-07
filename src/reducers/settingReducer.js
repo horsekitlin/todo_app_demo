@@ -2,9 +2,15 @@ import types from 'constants/actionTypes';
 import initialState from './initialState';
 
 const stopFetching = (setting, payload) => {
+  const nextFetchingTypes = {};
   const {fetchingTypes} = setting;
-  delete fetchingTypes[payload];
-  return { ...setting, fetchingTypes: fetchingTypes };
+  const keys = Object.keys(fetchingTypes);
+  keys.forEach(key => {
+    if (key !== payload) {
+      nextFetchingTypes[key] = fetchingTypes[key];
+    }
+  })
+  return { ...setting, fetchingTypes: nextFetchingTypes };
 };
 
 const startFetching = (setting, payload) =>
