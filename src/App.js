@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
 import LoadingMask from 'components/LoadingMask';
 import { authRoutes, noAuthRoutes } from './routes';
+import MessageCenter from 'components/MessageCenter';
 
 const App = () => {
   const isAuth = useSelector(({ auth }) => auth.isAuth);
@@ -14,6 +15,7 @@ const App = () => {
     <div>
       <CssBaseline />
       <LoadingMask />
+      <MessageCenter />
       {routing}
     </div>
   );

@@ -6,6 +6,7 @@ import {
   startFetchingMiddleware,
   stopFetchingMiddleware,
 } from 'middlewares/fetchingMiddleware';
+import {globalMessageMiddleware} from 'middlewares/globalMessageMiddleware';
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware({});
@@ -16,6 +17,7 @@ const configureStore = () => {
       startFetchingMiddleware,
       sagaMiddleware,
       stopFetchingMiddleware,
+      globalMessageMiddleware,
     ];
 
   const store = {

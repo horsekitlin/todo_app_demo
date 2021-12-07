@@ -4,10 +4,12 @@ export const syncActionTypes = [
   'START_FETCHING',
   'STOP_FETCHING',
   'SIGN_OUT',
+  'SEND_MESSAGE',
 ];
 
 export const basicAsyncActionTypes = [
-  'SIGN_IN',  
+  'SIGN_IN',
+  'SIGN_UP',
 ];
 
 
