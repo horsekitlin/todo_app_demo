@@ -9,6 +9,7 @@ import SignInScreen from 'screens/SignInScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import ProductsScreen from 'screens/ProductsScreen';
 import SignUpScreen from 'screens/SignUpScreen';
+import SignUpFormScreen from 'screens/SignUpFormScreen';
 import SettingScreen from 'screens/SettingScreen';
 
 export const authRoutes = [
@@ -53,6 +54,7 @@ export const noAuthRoutes = [
     children: [
       { path: 'signin', element: <SignInScreen /> },
       { path: 'signup', element: <SignUpScreen /> },
+      { path: 'signupform', element: <SignUpFormScreen /> },
       { path: '404', element: <NotFoundScreen /> },
       { path: '/', element: <Navigate to="/signin" /> },
       { path: '*', element: <Navigate to="/404" /> }

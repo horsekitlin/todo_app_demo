@@ -11,15 +11,14 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { signInAction } from "actions/authActions";
-import {firebaseApp} from 'utils/firebase';
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  sendSignInLinkToEmail,
 } from "firebase/auth";
 
-console.log("🚀 ~ file: index.js ~ line 15 ~ firebaseApp", firebaseApp);
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -50,7 +49,9 @@ const SignInScreen = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { handleSignIn } = getHandlers(dispatch);
-
+  useEffect(() => {
+    // signOut(getAuth());
+  }, []);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -64,10 +65,10 @@ const SignInScreen = () => {
         <form
           className={classes.form}
           noValidate
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSignIn();
-          }}
+          // onSubmit={(e) => {
+          //   e.preventDefault();
+          //   handleSignIn();
+          // }}
         >
           <TextField
             variant="outlined"
@@ -97,6 +98,38 @@ const SignInScreen = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={async () => {
+              const actionCodeSettings = {
+                // URL you want to redirect back to. The domain (www.example.com) for this
+                // URL must be in the authorized domains list in the Firebase Console.
+                url: 'https://2ba0-111-250-36-114.ngrok.io//signin?success=true',
+                // This must be true.
+                handleCodeInApp: true,
+                iOS: {
+                  bundleId: 'com.example.ios'
+                },
+                android: {
+                  packageName: 'com.example.android',
+                  installApp: true,
+                  minimumVersion: '21'
+                },
+                dynamicLinkDomain: 'example.page.link'
+              };
+              const auth = getAuth();
+              // const result = await createUserWithEmailAndPassword(auth, 'passon.com.tw@gmail.com', 'a12345678');
+              sendSignInLinkToEmail(auth, 'passon.com.tw@gmail.com', actionCodeSettings)
+                .then(() => {
+                  console.log('success');
+                  // The link was successfully sent. Inform the user.
+                  // Save the email locally so you don't need to ask the user for it again
+                  // if they open the link on the same device.
+                  // ...
+                })
+                .catch((error) => {
+                  console.log("🚀 ~ file: index.js ~ line 119 ~ SignInScreen ~ error", error);
+                  // ...
+                });
+            }}
           >
             Sign In
           </Button>
@@ -104,10 +137,6 @@ const SignInScreen = () => {
             onClick={async () => {
               try {
                 const auth = getAuth();
-                console.log(
-                  "🚀 ~ file: index.js ~ line 49 ~ useEffect ~ auth",
-                  auth
-                );
                 const provider = new FacebookAuthProvider();
                 const result = await signInWithPopup(auth, provider);
                 const user = result.user;
@@ -129,10 +158,6 @@ const SignInScreen = () => {
             onClick={async () => {
               try {
                 const auth = getAuth();
-                console.log(
-                  "🚀 ~ file: index.js ~ line 49 ~ useEffect ~ auth",
-                  auth
-                );
                 const provider = new GoogleAuthProvider();
                 const result = await signInWithPopup(auth, provider);
                 const user = result.user;

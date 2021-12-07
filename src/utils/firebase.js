@@ -3,24 +3,25 @@ import { initializeApp } from "firebase/app";
 import { useState, useEffect, useContext, createContext } from "react";
 
 const {
-  REACT_FIREBASE_API_KEY,
-  REACT_FIREBASE_AUTH_DOMAIN,
-  REACT_FIREBASE_PROJECT_ID,
-  REACT_FIREBASE_STORE_BUCKET,
-  REACT_FIREBASE_MESSAGE_SENDER_ID,
-  REACT_FIREBASE_APP_ID,
-  REACT_FIREBASE_MEASUREMENT_ID,
+  REACT_APP_FIREBASE_API_KEY,
+  REACT_APP_FIREBASE_AUTH_DOMAIN,
+  REACT_APP_FIREBASE_PROJECT_ID,
+  REACT_APP_FIREBASE_STORE_BUCKET,
+  REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+  REACT_APP_FIREBASE_APP_ID,
+  REACT_APP_FIREBASE_MEASUREMENT_ID,
 } = process.env;
 
 const firebaseConfig = {
-  apiKey: REACT_FIREBASE_API_KEY,
-  authDomain: REACT_FIREBASE_AUTH_DOMAIN,
-  projectId: REACT_FIREBASE_PROJECT_ID,
-  storageBucket: REACT_FIREBASE_STORE_BUCKET,
-  messagingSenderId: REACT_FIREBASE_MESSAGE_SENDER_ID,
-  appId: REACT_FIREBASE_APP_ID,
-  measurementId: REACT_FIREBASE_MEASUREMENT_ID,
+  apiKey: REACT_APP_FIREBASE_API_KEY,
+  authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: REACT_APP_FIREBASE_STORE_BUCKET,
+  messagingSenderId: REACT_APP_FIREBASE_MESSAGE_SENDER_ID,
+  appId: REACT_APP_FIREBASE_APP_ID,
+  measurementId: REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
+console.log("🚀 ~ file: firebase.js ~ line 24 ~ firebaseConfig", firebaseConfig)
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
