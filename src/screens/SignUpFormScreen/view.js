@@ -61,12 +61,10 @@ const SignUpFormScreen = (props) => {
               .oneOf([Yup.ref('password'), null], 'Password must match'),
             })}
             onSubmit={(payload) => {
-            // console.log("🚀 ~ file: view.js ~ line 61 ~ SignUpFormScreen ~ payload", payload)
               props.handleSignUp({
                 ...payload,
                 onSuccess: () => navigate("/signin"),
               });
-              // navigate("/app/dashboard", { replace: true });
             }}
           >
             {({
