@@ -1,5 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import {persistStore, persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 import {
@@ -7,6 +9,12 @@ import {
   stopFetchingMiddleware,
 } from 'middlewares/fetchingMiddleware';
 import {globalMessageMiddleware} from 'middlewares/globalMessageMiddleware';
+
+const persistConfig = {
+  storage,
+  key: '!&@#$%^drcleaneradmin',
+  blacklist: ['setting', 'cleaner', 'user', 'order'],
+};
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware({});
@@ -19,23 +27,30 @@ const configureStore = () => {
       stopFetchingMiddleware,
       globalMessageMiddleware,
     ];
-
-  const store = {
-    ...createStore(
-      rootReducer,
-      composeEnhancers(applyMiddleware(...middlewares))
-    ),
-    runSaga: sagaMiddleware.run(rootSaga)
-  };
-
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
+  const prevanteStore = createStore(
+    persistedReducer,
+    composeEnhancers(applyMiddleware(...middlewares)),
+  );
+  const persistor = persistStore(prevanteStore);
+  
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers/index', () => {
       const nextRootReducer = require('../reducers/index');
-      store.replaceReducer(nextRootReducer);
+      prevanteStore.replaceReducer(nextRootReducer);
     });
   }
-  return store;
+  return {
+    persistor,
+    store: {
+      ...prevanteStore,
+      runSaga: sagaMiddleware.run(rootSaga),
+    },
+  };
 };
 
-export default configureStore;
+const {store, persistor} = configureStore();
+
+export {persistor};
+export default store;
