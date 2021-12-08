@@ -1,17 +1,14 @@
 import React from "react";
 import queryString from "query-string";
-import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import {
-  Box,  
-  Button,
-  Container,
-  Link,
-  TextField,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import Page from "components/Page";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +25,7 @@ const SignUpFormScreen = (props) => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const initialFormData = queryString.parse(search.replace('?', ''));
+
   return (
     <Page className={classes.root} title="Register">
       <Box

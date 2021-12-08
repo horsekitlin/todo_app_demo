@@ -17,7 +17,12 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
 } from "firebase/auth";
+import {
+  FacebookLoginButton,
+  GoogleLoginButton,
+} from "react-social-login-buttons";
 import { validate } from "utils/yupCheck";
+import { passwordSchema } from "utils/schemas";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,18 +44,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const handleThirdPartySignInBy =
+  (provider, handleThirdPartySignIn) => async () => {
+    const auth = getAuth();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    const payload = {
+      token: user.accessToken,
+      email: user.email,
+    };
+    handleThirdPartySignIn(payload);
+  };
+
 const loginRequestSchema = Yup.object().shape({
   email: Yup.string()
     .email("Must be a valid email")
     .max(255)
     .required("Email is required"),
-  password: Yup.string()
-    .trim()
-    .required("密碼不可為空")
-    .matches(
-      /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
-      "密碼必須是 8個字符 的英數混合並且包含一個特殊字元"
-    ),
+  password: passwordSchema,
 });
 
 const SignInScreen = (props) => {
@@ -128,36 +139,28 @@ const SignInScreen = (props) => {
           >
             Sign In
           </Button>
-          <Button
-            onClick={async () => {
-              const auth = getAuth();
-              const provider = new FacebookAuthProvider();
-              const result = await signInWithPopup(auth, provider);
-              const user = result.user;
-              const payload = {
-                token: user.accessToken,
-                email: user.email,
-              };
-              props.handleThirdPartySignIn(payload);
-            }}
-          >
-            Facebook Login
-          </Button>
-          <Button
-            onClick={async () => {
-              const auth = getAuth();
-              const provider = new GoogleAuthProvider();
-              const result = await signInWithPopup(auth, provider);
-              const user = result.user;
-              const payload = {
-                token: user.accessToken,
-                email: user.email,
-              };
-              props.handleThirdPartySignIn(payload);
-            }}
-          >
-            Google Login
-          </Button>
+          <Grid container>
+            <Grid item lg={6}>
+              <FacebookLoginButton
+                onClick={handleThirdPartySignInBy(
+                  new FacebookAuthProvider(),
+                  props.handleThirdPartySignIn
+                )}
+              >
+                FB Login
+              </FacebookLoginButton>
+            </Grid>
+            <Grid item lg={6}>
+              <GoogleLoginButton
+                onClick={handleThirdPartySignInBy(
+                  new GoogleAuthProvider(),
+                  props.handleThirdPartySignIn
+                )}
+              >
+                Google Login
+              </GoogleLoginButton>
+            </Grid>
+          </Grid>
           <Grid container>
             <Grid item>
               <Link href="/signup" variant="body2">

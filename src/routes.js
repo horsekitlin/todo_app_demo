@@ -3,11 +3,27 @@ import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'layouts/DashboardLayout';
 import MainLayout from 'layouts/MainLayout';
 import DashboardScreen from 'screens/DashboardScreen';
+import ValidateEmailScreen from 'screens/ValidateEmailScreen';
 import SignInScreen from 'screens/SignInScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import SignUpScreen from 'screens/SignUpScreen';
 import SignUpFormScreen from 'screens/SignUpFormScreen';
 import SettingScreen from 'screens/SettingScreen';
+
+export const validateEmailRoute = [
+  {
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      { path: 'validate', element: <ValidateEmailScreen /> },
+      { path: '*', element: <Navigate to="/validate" /> },
+    ],
+  },
+  {
+    path: '*',
+    element: <Navigate to="/validate" />,
+  },
+];
 
 export const authRoutes = [
   {

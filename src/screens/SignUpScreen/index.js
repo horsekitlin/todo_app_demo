@@ -40,7 +40,6 @@ const SignUpScreen = () => {
         justifyContent="center"
       >
         <Box width='30%'> 
-        {/* {pathname: '/signupform', search: '?aaa=aaa'} */}
           <Button  fullWidth color='primary' variant='contained' style={{ height: 50 }} onClick={() => navigate({pathname: '/signupform'})}>
             <p>Email Login</p>
           </Button>
