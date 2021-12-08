@@ -1,7 +1,7 @@
 import types from "constants/actionTypes";
 
-export const getTaskAction = (payload) => ({
-  type: types.GET_TASK,
+export const getTasksAction = (payload) => ({
+  type: types.GET_TASKS,
   payload,
 });
 

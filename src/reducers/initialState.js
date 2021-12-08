@@ -14,6 +14,9 @@ const settingState = {
   fetchingTypes: {}
 };
 
+const taskState = {
+  list: [],
+};
 
 const messageState = {
   msgKey: 0,
@@ -23,6 +26,7 @@ const messageState = {
 
 const initialState = {
   auth: authState,
+  task: taskState,
   setting: settingState,
   message: messageState,
 };

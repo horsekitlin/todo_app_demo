@@ -7,16 +7,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const HandleTaskModal = ({ mode, isOpen, setIsOpen, handleAddTask }) => {
+const HandleTaskModal = ({ mode, isOpen, closeModal, handleAddTask }) => {
   const [formData, setFormData] = useState({
     title: "",
   });
   const title = mode === "ADD" ? "新增任務" : "編輯任務";
-
-  const closeModal = () => {
-    setFormData({ title: ""});
-    setIsOpen(false);
-  };
 
   const handleSubmit = () => {
     handleAddTask({

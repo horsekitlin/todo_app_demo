@@ -21,7 +21,6 @@ const firebaseConfig = {
   appId: REACT_APP_FIREBASE_APP_ID,
   measurementId: REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
-console.log("🚀 ~ file: firebase.js ~ line 24 ~ firebaseConfig", firebaseConfig)
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
@@ -34,6 +33,7 @@ export const AuthContextProvider = (props) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), setUser, setError);
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <AuthContext.Provider value={{ user, error }} {...props} />;
 };

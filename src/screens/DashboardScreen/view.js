@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Box,
-  Container,
-  Grid,
   makeStyles
 } from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import Page from 'components/Page';
 import Toolbar from './components/Toolbar';
 import TaskCard from './components/TaskCard';
-import data from './components/data';
+
+const DEFAULT_TASK = { title: '' };
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,46 +25,44 @@ const useStyles = makeStyles((theme) => ({
 
 const DashboardScreen = (props) => {
   const classes = useStyles();
-  const [products] = useState(data);
+  const [modalOptions, setModalOptions] = useState({ isOpen: false, task: {...DEFAULT_TASK} });
 
+  useEffect(() => {
+    props.handleGetTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Page
       className={classes.root}
       title='Products'
     >
       <Container maxWidth={false}>
-        <Toolbar handleAddTask={props.handleAddTask} />
+        <Toolbar
+          isOpen={modalOptions.isOpen}
+          openModal={() => setModalOptions({ ...modalOptions, isOpen: true })}
+          closeModal={() => setModalOptions({ task: { ...DEFAULT_TASK }, isOpen: false })}
+          handleAddTask={props.handleAddTask} />
         <Box mt={3}>
           <Grid
             container
             spacing={3}
           >
-            {products.map((product) => (
+            {props.taskList.map((task) => (
               <Grid
                 item
-                key={product.id}
+                key={task.id}
                 lg={4}
                 md={6}
                 xs={12}
               >
                 <TaskCard
+                  task={task}
                   className={classes.TaskCard}
-                  product={product}
+                  handleUpdateTask={props.handleUpdateTask} 
                 />
               </Grid>
             ))}
           </Grid>
-        </Box>
-        <Box
-          mt={3}
-          display='flex'
-          justifyContent='center'
-        >
-          <Pagination
-            color='primary'
-            count={3}
-            size='small'
-          />
         </Box>
       </Container>
     </Page>

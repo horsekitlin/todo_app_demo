@@ -10,7 +10,7 @@ export const syncActionTypes = [
 export const basicAsyncActionTypes = [
   'SIGN_IN',
   'SIGN_UP',
-  'GET_TASK',
+  'GET_TASKS',
   'ADD_TASK',
   'UPDATE_TASK',
 ];
