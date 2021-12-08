@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   Drawer,
   Hidden,
@@ -21,11 +20,7 @@ import {
 } from 'react-feather';
 import NavItem from './NavItem';
 
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  jobTitle: 'Senior Developer',
-  name: 'Tomas Lin'
-};
+const DEFAULT_AVATAR = '/static/images/avatars/avatar_6.png';
 
 const items = [
   {
@@ -71,7 +66,8 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const NavBar = ({ onMobileClose, openMobile }) => {
+const NavBar = ({ user, onMobileClose, openMobile }) => {
+console.log("🚀 ~ file: index.js ~ line 70 ~ NavBar ~ user", user)
   const classes = useStyles();
   const location = useLocation();
 
@@ -97,11 +93,10 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         <Avatar
           className={classes.avatar}
           component={RouterLink}
-          src={user.avatar}
+          src={DEFAULT_AVATAR}
           to='/app/account'
         />
         <Typography
-          className={classes.name}
           color='textPrimary'
           variant='h5'
         >
@@ -111,7 +106,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           color='textSecondary'
           variant='body2'
         >
-          {user.jobTitle}
+          {user.email}
         </Typography>
       </Box>
       <Divider />
@@ -164,6 +159,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
+  user: {},
   onMobileClose: () => {},
   openMobile: false
 };

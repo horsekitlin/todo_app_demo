@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DashboardLayout = (props) => {
+console.log("🚀 ~ file: view.js ~ line 39 ~ DashboardLayout ~ props", props)
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
   const location = useLocation();
@@ -54,6 +55,7 @@ const DashboardLayout = (props) => {
     <div className={classes.root}>
       <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} handleSignOut={props.handleSignOut} />
       <NavBar
+        user={props.user}
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}        
       />
