@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  TextField,
-  InputAdornment,
   SvgIcon,
   makeStyles
 } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
 import { Search as SearchIcon } from 'react-feather';
+import HandleTaskModal from './HandleTaskModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -25,21 +26,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Toolbar = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
       className={clsx(classes.root, className)}
       {...rest}
     >
+      <HandleTaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <Box
         display='flex'
         justifyContent='flex-end'
       >
         <Button
+          onClick={() => setIsOpen(true)}
           color='primary'
           variant='contained'
         >
-          Add product
+          新增任務
         </Button>
       </Box>
       <Box mt={3}>

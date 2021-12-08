@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DashboardLayout = (props) => {
-console.log("🚀 ~ file: view.js ~ line 39 ~ DashboardLayout ~ props", props)
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
   const location = useLocation();

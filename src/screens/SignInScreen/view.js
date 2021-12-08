@@ -16,7 +16,6 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  sendSignInLinkToEmail,
 } from "firebase/auth";
 import { validate } from "utils/yupCheck";
 
