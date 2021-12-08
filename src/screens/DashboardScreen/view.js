@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const DashboardScreen = () => {
+const DashboardScreen = (props) => {
   const classes = useStyles();
   const [products] = useState(data);
 
@@ -33,7 +33,7 @@ const DashboardScreen = () => {
       title='Products'
     >
       <Container maxWidth={false}>
-        <Toolbar />
+        <Toolbar handleAddTask={props.handleAddTask} />
         <Box mt={3}>
           <Grid
             container

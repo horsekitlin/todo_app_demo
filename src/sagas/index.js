@@ -3,9 +3,11 @@ import types, {basicAsyncActionTypes} from 'constants/actionTypes';
 import { fork, all, takeLatest } from 'redux-saga/effects';
 import * as Watchers from './watcher';
 import * as authSagas from './authSagas';
+import * as taskSagas from './taskSagas';
 
 const allSaga = {
   ...authSagas,
+  ...taskSagas,
 };
 
 const getMatchedSaga = (actionType) => {

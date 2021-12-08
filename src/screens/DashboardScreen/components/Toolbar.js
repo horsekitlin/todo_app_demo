@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Toolbar = ({ className, ...rest }) => {
+const Toolbar = ({ className, handleAddTask, ...rest }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,7 +33,7 @@ const Toolbar = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <HandleTaskModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <HandleTaskModal isOpen={isOpen} setIsOpen={setIsOpen} handleAddTask={handleAddTask} />
       <Box
         display='flex'
         justifyContent='flex-end'

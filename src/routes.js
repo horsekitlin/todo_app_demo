@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'layouts/DashboardLayout';
 import MainLayout from 'layouts/MainLayout';
-import DashboardScreen from 'screens/DashboardScreen/view';
+import DashboardScreen from 'screens/DashboardScreen';
 import SignInScreen from 'screens/SignInScreen';
 import NotFoundScreen from 'screens/NotFoundScreen';
 import SignUpScreen from 'screens/SignUpScreen';
