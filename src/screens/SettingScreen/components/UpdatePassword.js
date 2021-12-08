@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -12,11 +12,6 @@ import { Formik } from "formik";
 import { passwordSchema } from "utils/schemas";
 
 const UpdatePassword = ({ className, handleResetPassword, ...rest }) => {
-  const [values, setValues] = useState({
-    password: "",
-    confirm: "",
-  });
-
   return (
     <Card>
       <CardHeader subheader="Update password" title="Password" />
