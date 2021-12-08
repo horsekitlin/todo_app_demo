@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Toolbar = ({
   isOpen,
+  searchText,
+  setSearchText,
   className,
   openModal,
   closeModal,
@@ -54,6 +56,8 @@ const Toolbar = ({
             <Box maxWidth={500}>
               <TextField
                 fullWidth
+                value={searchText}
+                onChange={e => setSearchText(e.target.value)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
