@@ -150,9 +150,6 @@ const SignUpFormScreen = (props) => {
                     Sign up now
                   </Button>
                 </Box>
-                <Link component={RouterLink} to="/signin" variant="h6">
-                  Sign in
-                </Link>
               </form>
             )}
           </Formik>
