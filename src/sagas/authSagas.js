@@ -2,6 +2,7 @@ import types from 'constants/actionTypes';
 import {
   signUpResult,
   signInResult,
+  thirdPartySignInResult,
 } from 'apis/auth';
 import fetchAPIResult from 'utils/sagaUtils';
 
@@ -19,5 +20,13 @@ export function* signInSaga({payload}) {
     apiResult: signInResult,
     payload,
     action: types.SIGN_IN,
+  });
+}
+
+export function* thirdPartySignInSaga({payload}) {
+  return yield fetchAPIResult({
+    apiResult: thirdPartySignInResult,
+    payload,
+    action: types.THIRD_PARTY_SIGN_IN,
   });
 }

@@ -49,7 +49,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 const NavBar = ({ user, onMobileClose, openMobile }) => {
-console.log("🚀 ~ file: index.js ~ line 70 ~ NavBar ~ user", user)
   const classes = useStyles();
   const location = useLocation();
 

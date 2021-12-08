@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import isEmpty from 'lodash/isEmpty';
-import * as Yup from 'yup';
+import isEmpty from "lodash/isEmpty";
+import * as Yup from "yup";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -41,20 +41,23 @@ const useStyles = makeStyles((theme) => ({
 
 const loginRequestSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Must be a valid email')
+    .email("Must be a valid email")
     .max(255)
-    .required('Email is required'),
+    .required("Email is required"),
   password: Yup.string()
-  .trim()
-  .required('密碼不可為空')
-  .matches(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/, '密碼必須是 8個字符 的英數混合並且包含一個特殊字元'),
+    .trim()
+    .required("密碼不可為空")
+    .matches(
+      /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
+      "密碼必須是 8個字符 的英數混合並且包含一個特殊字元"
+    ),
 });
 
 const SignInScreen = (props) => {
   const classes = useStyles();
   const [formData, setFormSata] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -73,11 +76,15 @@ const SignInScreen = (props) => {
           noValidate
           onSubmit={async (e) => {
             e.preventDefault();
-              const {isValid, errors} = validate(loginRequestSchema, formData, false);
-              if (isValid) {
-                props.handleSignIn(formData);
-              }
-              setErrors(errors);
+            const { isValid, errors } = validate(
+              loginRequestSchema,
+              formData,
+              false
+            );
+            if (isValid) {
+              props.handleSignIn(formData);
+            }
+            setErrors(errors);
           }}
         >
           <TextField
@@ -92,7 +99,9 @@ const SignInScreen = (props) => {
             autoComplete="email"
             autoFocus
             value={formData.email}
-            onChange={e => setFormSata({...formData, email: e.target.value})}
+            onChange={(e) =>
+              setFormSata({ ...formData, email: e.target.value })
+            }
           />
           <TextField
             variant="outlined"
@@ -106,7 +115,9 @@ const SignInScreen = (props) => {
             type="password"
             autoComplete="current-password"
             value={formData.password}
-            onChange={e => setFormSata({...formData, password: e.target.value})}
+            onChange={(e) =>
+              setFormSata({ ...formData, password: e.target.value })
+            }
           />
           <Button
             type="submit"
@@ -140,21 +151,15 @@ const SignInScreen = (props) => {
           </Button>
           <Button
             onClick={async () => {
-              try {
-                const auth = getAuth();
-                const provider = new GoogleAuthProvider();
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                console.log(
-                  "🚀 ~ file: index.js ~ line 134 ~ .then ~ user",
-                  user
-                );
-              } catch (error) {
-                console.log(
-                  "🚀 ~ file: index.js ~ line 121 ~ onClick={ ~ error",
-                  error
-                );
-              }
+              const auth = getAuth();
+              const provider = new GoogleAuthProvider();
+              const result = await signInWithPopup(auth, provider);
+              const user = result.user;
+              const payload = {
+                token: user.accessToken,
+                email: user.email,
+              };
+              props.handleThirdPartySignIn(payload);
             }}
           >
             Google Login
