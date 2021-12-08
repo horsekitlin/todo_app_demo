@@ -26,6 +26,7 @@ const useStyles = makeStyles(() => ({
 const TopBar = ({
   className,
   onMobileNavOpen,
+  handleSignOut,
   ...rest
 }) => {
   const classes = useStyles();
@@ -59,7 +60,7 @@ const TopBar = ({
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <IconMenu />
+        <IconMenu handleSignOut={handleSignOut} />
       </Toolbar>
     </AppBar>
   );

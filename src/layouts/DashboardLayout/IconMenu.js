@@ -7,8 +7,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { useDispatch } from 'react-redux';
-import { signOutAction } from 'actions/authActions';
 
 const StyledMenu = withStyles({
   paper: {
@@ -41,17 +39,8 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-
-const getHandlers = (dispatch) => {
-  return {
-    handleSignOut: signOutAction(dispatch),
-  };
-};
-
-const IconMenu = () => {
+const IconMenu = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const dispatch = useDispatch();
-  const { handleSignOut } = getHandlers(dispatch);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -73,7 +62,7 @@ const IconMenu = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <StyledMenuItem onClick={() => handleSignOut()}>
+          <StyledMenuItem onClick={props.handleSignOut}>
             <ListItemIcon>
               <MeetingRoomIcon fontSize='small' />
             </ListItemIcon>

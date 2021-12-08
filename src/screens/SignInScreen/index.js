@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import SignInScreen from './view';
 import { signInAction } from 'actions/authActions';
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   handleSignIn: payload => {
