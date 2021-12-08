@@ -9,11 +9,13 @@ export const syncActionTypes = [
 
 export const basicAsyncActionTypes = [
   'THIRD_PARTY_SIGN_IN',
+  'RESEND_VALIDATION_EMAIL',
   'SIGN_IN',
   'SIGN_UP',
   'GET_TASKS',
   'ADD_TASK',
   'UPDATE_TASK',
+  'GET_USER',
 ];
 
 

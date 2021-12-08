@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -15,9 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ValidateEmailScreen = () => {
+const ValidateEmailScreen = (props) => {
   const classes = useStyles();
 
+  useEffect(() => {
+    props.handleGetUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Page className={classes.root}>
       <Box
@@ -30,7 +34,9 @@ const ValidateEmailScreen = () => {
           <Typography color="textPrimary" variant="h4">
             帳號未驗證
           </Typography>
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="contained" onClick={() =>{
+            props.handleResendValidationEmail();
+          }}>
             ValidateEmailScreen
           </Button>
         </Container>

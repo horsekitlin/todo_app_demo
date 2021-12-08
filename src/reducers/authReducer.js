@@ -9,6 +9,8 @@ export default function routeReducer(
   switch (type) {
     case types.SIGN_OUT:
       return cloneDeep(initialState.auth);
+    case types.GET_USER_SUCCESS:
+      return { ...auth, user: payload };
     case types.TIRTHD_PARTY_SIGN_IN_SUCCESS:
     case types.THIRD_PARTY_SIGN_IN_SUCCESS:
     case types.SIGN_IN_SUCCESS:
@@ -19,6 +21,8 @@ export default function routeReducer(
     case types.TIRTHD_PARTY_SIGN_IN_ERROR:
     case types.THIRD_PARTY_SIGN_IN:
     case types.THIRD_PARTY_SIGN_IN_ERROR:
+    case types.GET_USER:
+    case types.GET_USER_ERROR:
     default:
       return auth;
   }

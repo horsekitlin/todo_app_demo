@@ -3,6 +3,7 @@ import {
   signUpResult,
   signInResult,
   thirdPartySignInResult,
+  resendValidationEmailResult,
 } from 'apis/auth';
 import fetchAPIResult from 'utils/sagaUtils';
 
@@ -28,5 +29,13 @@ export function* thirdPartySignInSaga({payload}) {
     apiResult: thirdPartySignInResult,
     payload,
     action: types.THIRD_PARTY_SIGN_IN,
+  });
+}
+
+export function* resendValidationEmailSaga({payload}) {
+  return yield fetchAPIResult({
+    apiResult: resendValidationEmailResult,
+    payload,
+    action: types.RESEND_VALIDATION_EMAIL,
   });
 }

@@ -4,10 +4,12 @@ import { fork, all, takeLatest } from 'redux-saga/effects';
 import * as Watchers from './watcher';
 import * as authSagas from './authSagas';
 import * as taskSagas from './taskSagas';
+import * as userSagas from './userSagas';
 
 const allSaga = {
   ...authSagas,
   ...taskSagas,
+  ...userSagas,
 };
 
 const getMatchedSaga = (actionType) => {
