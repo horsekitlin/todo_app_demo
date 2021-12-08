@@ -1,5 +1,13 @@
 const authState = {
   isAuth: false,
+  token: '',
+  user: {
+    id: null,
+    status: null,
+    createdAt: null,
+    name: '',
+    email: '',
+  },
 };
 
 const settingState = {

@@ -115,38 +115,6 @@ const SignInScreen = (props) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={async () => {
-              const actionCodeSettings = {
-                // URL you want to redirect back to. The domain (www.example.com) for this
-                // URL must be in the authorized domains list in the Firebase Console.
-                url: 'https://2ba0-111-250-36-114.ngrok.io//signin?success=true',
-                // This must be true.
-                handleCodeInApp: true,
-                iOS: {
-                  bundleId: 'com.example.ios'
-                },
-                android: {
-                  packageName: 'com.example.android',
-                  installApp: true,
-                  minimumVersion: '21'
-                },
-                dynamicLinkDomain: 'example.page.link'
-              };
-              const auth = getAuth();
-              // const result = await createUserWithEmailAndPassword(auth, 'passon.com.tw@gmail.com', 'a12345678');
-              sendSignInLinkToEmail(auth, 'passon.com.tw@gmail.com', actionCodeSettings)
-                .then(() => {
-                  console.log('success');
-                  // The link was successfully sent. Inform the user.
-                  // Save the email locally so you don't need to ask the user for it again
-                  // if they open the link on the same device.
-                  // ...
-                })
-                .catch((error) => {
-                  console.log("🚀 ~ file: index.js ~ line 119 ~ SignInScreen ~ error", error);
-                  // ...
-                });
-            }}
           >
             Sign In
           </Button>

@@ -12,7 +12,7 @@ import {globalMessageMiddleware} from 'middlewares/globalMessageMiddleware';
 
 const persistConfig = {
   storage,
-  key: '!&@#$%^drcleaneradmin',
+  key: '!&@#$%^todoAppDemo',
   blacklist: ['setting', 'cleaner', 'user', 'order'],
 };
 

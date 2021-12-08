@@ -1,12 +1,13 @@
+import cloneDeep from 'lodash/cloneDeep';
 import types from 'constants/actionTypes';
 import initialState from './initialState';
 
-export default function routeReducer(auth = initialState.auth, { type }) {
+export default function routeReducer(auth = initialState.auth, { type, payload }) {
   switch (type) {
     case types.SIGN_OUT:
-      return { ...auth, isAuth: false };
+      return cloneDeep(initialState.auth);
     case types.SIGN_IN_SUCCESS:
-      return { ...auth, isAuth: true };
+      return { ...auth, isAuth: true, ...payload };
     case types.SIGN_IN:
     case types.SIGN_IN_ERROR:
     default:
