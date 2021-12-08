@@ -25,3 +25,14 @@ export const resendValidationEmailResult = async ({ customHeaders }) => {
   );
   return response;
 };
+
+export const resetPasswordResult = async ({ customHeaders, payload }) => {
+  const { data: response } = await server.post(
+    "/users/reset/password",
+    payload,
+    {
+      headers: customHeaders,
+    }
+  );
+  return response;
+};

@@ -11,18 +11,11 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { passwordSchema } from "utils/schemas";
 
-const UpdatePassword = ({ className, ...rest }) => {
+const UpdatePassword = ({ className, handleResetPassword, ...rest }) => {
   const [values, setValues] = useState({
     password: "",
     confirm: "",
   });
-
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-  };
 
   return (
     <Card>
@@ -44,10 +37,7 @@ const UpdatePassword = ({ className, ...rest }) => {
             ),
           })}
           onSubmit={(payload) => {
-            console.log(
-              "🚀 ~ file: UpdatePassword.js ~ line 66 ~ UpdatePassword ~ payload",
-              payload
-            );
+            handleResetPassword(payload);
           }}
         >
           {({

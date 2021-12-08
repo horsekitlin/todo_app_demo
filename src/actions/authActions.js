@@ -1,5 +1,10 @@
 import types from "constants/actionTypes";
 
+export const resetPasswordAction = (payload) => ({
+  type: types.RESET_PASSWORD,
+  payload,
+});
+
 export const resendValidationEmailAction = (payload) => ({
   type: types.RESEND_VALIDATION_EMAIL,
   payload,

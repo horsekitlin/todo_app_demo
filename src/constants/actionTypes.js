@@ -8,6 +8,7 @@ export const syncActionTypes = [
 ];
 
 export const basicAsyncActionTypes = [
+  'RESET_PASSWORD',
   'THIRD_PARTY_SIGN_IN',
   'RESEND_VALIDATION_EMAIL',
   'SIGN_IN',

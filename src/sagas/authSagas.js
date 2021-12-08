@@ -2,6 +2,7 @@ import types from 'constants/actionTypes';
 import {
   signUpResult,
   signInResult,
+  resetPasswordResult,
   thirdPartySignInResult,
   resendValidationEmailResult,
 } from 'apis/auth';
@@ -37,5 +38,14 @@ export function* resendValidationEmailSaga({payload}) {
     apiResult: resendValidationEmailResult,
     payload,
     action: types.RESEND_VALIDATION_EMAIL,
+  });
+}
+
+export function* resetPasswordSaga({payload}) {
+  return yield fetchAPIResult({
+    payload,
+    apiResult: resetPasswordResult,
+    successMessage: '修改密碼成功',
+    action: types.RESET_PASSWORD,
   });
 }

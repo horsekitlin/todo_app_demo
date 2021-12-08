@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SettingsView = () => {
+const SettingsView = (props) => {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,7 @@ const SettingsView = () => {
     >
       <Container maxWidth='lg'>
         <Box mt={3}>
-          <UpdatePassword />
+          <UpdatePassword handleResetPassword={props.handleResetPassword} />
         </Box>
       </Container>
     </Page>
