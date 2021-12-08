@@ -1,0 +1,15 @@
+before_script:
+  - source ~/.bashrc
+
+deployUat:
+  stage: build
+  only:
+    - deployDev
+  tags:
+    - macmini-drcleaner
+  script:
+    - yarn install
+    - cp "${UAT_ENV}" .env
+    - yarn build
+    - scp -i "~/pems/passontw.pem" -r ./build/** $ACCOUNT@$UAT_HOST:$TARGET
+
