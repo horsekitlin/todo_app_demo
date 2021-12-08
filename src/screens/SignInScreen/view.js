@@ -130,21 +130,15 @@ const SignInScreen = (props) => {
           </Button>
           <Button
             onClick={async () => {
-              try {
-                const auth = getAuth();
-                const provider = new FacebookAuthProvider();
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                console.log(
-                  "🚀 ~ file: index.js ~ line 134 ~ .then ~ user",
-                  user
-                );
-              } catch (error) {
-                console.log(
-                  "🚀 ~ file: index.js ~ line 121 ~ onClick={ ~ error",
-                  error
-                );
-              }
+              const auth = getAuth();
+              const provider = new FacebookAuthProvider();
+              const result = await signInWithPopup(auth, provider);
+              const user = result.user;
+              const payload = {
+                token: user.accessToken,
+                email: user.email,
+              };
+              props.handleThirdPartySignIn(payload);
             }}
           >
             Facebook Login
