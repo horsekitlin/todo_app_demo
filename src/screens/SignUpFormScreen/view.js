@@ -10,6 +10,7 @@ import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Page from "components/Page";
+import { passwordSchema } from "utils/schemas";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,10 +52,7 @@ const SignUpFormScreen = (props) => {
                 .max(255)
                 .required("Email is required"),
               name: Yup.string().max(255).required("Nick name is required"),
-              password: Yup.string()
-              .trim()
-              .required('密碼不可為空')
-              .matches(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/, '密碼必須是 8個字符 的英數混合並且包含一個特殊字元'),
+              password: passwordSchema,
               confirmPassword: Yup.string()
               .oneOf([Yup.ref('password'), null], 'Password must match'),
             })}

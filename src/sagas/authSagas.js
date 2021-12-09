@@ -1,23 +1,24 @@
-import types from 'constants/actionTypes';
+import types from "constants/actionTypes";
 import {
   signUpResult,
   signInResult,
   resetPasswordResult,
   thirdPartySignInResult,
   resendValidationEmailResult,
-} from 'apis/auth';
-import fetchAPIResult from 'utils/sagaUtils';
+} from "apis/auth";
+import fetchAPIResult from "utils/sagaUtils";
 
-export function* signUpSaga({payload}) {
+export function* signUpSaga({ payload: { onSuccess, ...payload } }) {
   return yield fetchAPIResult({
-    apiResult: signUpResult,
     payload,
+    onSuccess,
+    apiResult: signUpResult,
     action: types.SIGN_UP,
-    successMessage: '註冊成功',
+    successMessage: "註冊成功",
   });
 }
 
-export function* signInSaga({payload}) {
+export function* signInSaga({ payload }) {
   return yield fetchAPIResult({
     apiResult: signInResult,
     payload,
@@ -25,7 +26,7 @@ export function* signInSaga({payload}) {
   });
 }
 
-export function* thirdPartySignInSaga({payload}) {
+export function* thirdPartySignInSaga({ payload }) {
   return yield fetchAPIResult({
     apiResult: thirdPartySignInResult,
     payload,
@@ -33,7 +34,7 @@ export function* thirdPartySignInSaga({payload}) {
   });
 }
 
-export function* resendValidationEmailSaga({payload}) {
+export function* resendValidationEmailSaga({ payload }) {
   return yield fetchAPIResult({
     apiResult: resendValidationEmailResult,
     payload,
@@ -41,11 +42,11 @@ export function* resendValidationEmailSaga({payload}) {
   });
 }
 
-export function* resetPasswordSaga({payload}) {
+export function* resetPasswordSaga({ payload }) {
   return yield fetchAPIResult({
     payload,
     apiResult: resetPasswordResult,
-    successMessage: '修改密碼成功',
+    successMessage: "修改密碼成功",
     action: types.RESET_PASSWORD,
   });
 }

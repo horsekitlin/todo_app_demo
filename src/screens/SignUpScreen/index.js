@@ -15,6 +15,7 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,29 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(3),
   },
 }));
+
+const handleSubmitByThirdParty = (provider, navigate) => async () => {
+  try {
+    const auth = getAuth();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    const payload = {
+      googleId: user.uid,
+      email: user.email,
+      name: user.displayName,
+    };
+    const search = queryString.stringify(payload);
+    navigate({
+      pathname: '/signupform',
+      search: `?${search}`,
+    });
+  } catch (error) {
+    console.log(
+      "🚀 ~ file: index.js ~ line 121 ~ onClick={ ~ error",
+      error
+    );
+  }
+};
 
 const SignUpScreen = () => {
   const classes = useStyles();
@@ -45,32 +69,10 @@ const SignUpScreen = () => {
           </Button>
         </Box>
         <Box width='30%'>
-          <FacebookLoginButton text='Registe With Facebook' />
+          <FacebookLoginButton text='Registe With Facebook' onClick={handleSubmitByThirdParty(new FacebookAuthProvider(), navigate)}  />
         </Box>
         <Box width='30%'>
-          <GoogleLoginButton text='Registe With Google' onClick={async () => {
-            try {
-              const auth = getAuth();
-              const provider = new GoogleAuthProvider();
-              const result = await signInWithPopup(auth, provider);
-              const user = result.user;
-              const payload = {
-                googleId: user.uid,
-                email: user.email,
-                name: user.displayName,
-              };
-              const search = queryString.stringify(payload);
-              navigate({
-                pathname: '/signupform',
-                search: `?${search}`,
-              });
-            } catch (error) {
-              console.log(
-                "🚀 ~ file: index.js ~ line 121 ~ onClick={ ~ error",
-                error
-              );
-            }
-          }} />
+          <GoogleLoginButton text='Registe With Google' onClick={handleSubmitByThirdParty(new GoogleAuthProvider(), navigate)} />
         </Box>
       </Box>
     </Page>
